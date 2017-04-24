@@ -5,7 +5,7 @@ const lexRuntime = new LexRuntime()
 export const handler = ({ text }, context, callback) => {
   lexRuntime.postText({
     botName: 'LexTest',
-    botAlias: 'Latest',
+    botAlias: 'Prod',
     inputText: text,
     userId: Date.now()
   }, (error, data) => {
