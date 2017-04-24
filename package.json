@@ -1,0 +1,71 @@
+{
+  "name": "simple-lex-api",
+  "version": "1.0.0",
+  "description": "A simple REST API to test our Amazon's Lex",
+  "scripts": {
+    "build": "concurrently \"npm test\" \"npm run webpack\"",
+    "deploy": "cross-env NODE_ENV=production npm run build",
+    "serve": "serverless webpack serve",
+    "serverless": "serverless",
+    "start": "npm test && npm run watch",
+    "test": "standard",
+    "watch": "concurrently \"npm run serve\" \"npm run watch:test\" \"npm run watch:webpack\"",
+    "watch:test": "onchange \"src/**/*\" \"*.js\" -- npm test",
+    "watch:webpack": "npm run webpack -- watch --function main --path event.json",
+    "webpack": "serverless webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahmednuaman/simple-lex-api.git"
+  },
+  "keywords": [],
+  "author": "Ahmed Nuaman",
+  "bugs": {
+    "url": "https://github.com/ahmednuaman/simple-lex-api/issues"
+  },
+  "homepage": "https://github.com/ahmednuaman/simple-lex-api#readme",
+  "devDependencies": {
+    "babel-cli": "^6.24.0",
+    "babel-core": "^6.24.0",
+    "babel-loader": "^6.4.1",
+    "babel-plugin-lodash": "^3.2.11",
+    "babel-plugin-transform-async-to-generator": "^6.22.0",
+    "babel-preset-env": "^1.2.2",
+    "babili-webpack-plugin": "^0.0.11",
+    "clean-webpack-plugin": "^0.1.16",
+    "concurrently": "^3.4.0",
+    "cross-env": "^3.2.4",
+    "json-loader": "^0.5.4",
+    "lodash": "^4.17.4",
+    "onchange": "^3.2.1",
+    "serverless": "^1.11.0",
+    "serverless-webpack": "https://github.com/elastic-coders/serverless-webpack/tarball/master",
+    "standard": "^9.0.2",
+    "webpack": "^2.2.1",
+    "webpack-node-externals": "^1.5.4"
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "node": 6
+          }
+        }
+      ]
+    ],
+    "plugins": [
+      "lodash",
+      "transform-async-to-generator"
+    ]
+  },
+  "standard": {
+    "ignore": [
+      "build"
+    ]
+  },
+  "dependencies": {
+    "aws-sdk": "^2.41.0"
+  }
+}
